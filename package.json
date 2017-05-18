@@ -1,0 +1,22 @@
+{
+  "name": "desafio.angular",
+  "version": "0.0.1",
+  "description": "A simple test to show Angular Skils ",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ciandt",
+    "test",
+    "angular"
+  ],
+  "author": "Maison Chaves",
+  "license": "ISC"
+}
