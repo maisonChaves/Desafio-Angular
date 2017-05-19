@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+    <title>Desafio Angular</title>
+</head>
+
+<body ng-app="challengeApp">
+
+    <div ng-controller="MainController" ng-cloak layout-fill>
+        <md-tabs layout-fill>
+            <md-tab label="1">
+                <md-content class="md-padding" flex>
+                    <p layout="column" flex="100">First things first: tell us a litle bit about yourself.</p>
+                    <div layout="row" flex="100">
+                        <md-input-container flex>
+                            <label>Your favorite commic superhero</label>
+                            <input type="text" ng-model="color" required>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>TV serie you currently watching</label>
+                            <input type="text" ng-model="color" required>
+                        </md-input-container>
+                    </div>
+                    <div layout="row" flex="100">
+                        <md-input-container flex>
+                            <label>Wich one you use: Bolacha or Biscoito</label>
+                            <input type="text" ng-model="color" required>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>What is the best quote ever</label>
+                            <input type="text" ng-model="color" required>
+                        </md-input-container>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="2">
+                <md-content class="md-padding" layout="column">
+                    <p flex layout="column">
+                        Which one of these is your favorite Star Wars movie?
+                    </p>
+                    <md-radio-group ng-model="selected" layout="row" layout-wrap flex>
+                        <div ng-repeat="m in movies" flex="20">
+                            <md-card>
+                                <img ng-src="{{m.Poster}}" class="md-card-image" alt="{{m.Title}} ({{m.Year}})">
+                                <md-card-actions layout="row" layout-align="center center">
+                                    <md-radio-button value="{{$index}}">
+
+                                    </md-radio-button>
+                                </md-card-actions>
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{m.Title}} ({{m.Year}})</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </md-card>
+                        </div>
+                    </md-radio-group>
+                </md-content>
+            </md-tab>
+            <md-tab label="3">
+                <md-content class="md-padding" layout="row">
+                    <div flex="33" layout-align="center center">
+                        <img ng-src="{{serie.Poster}}" alt="{{serie.Title}} ({{serie.Year}})">
+                    </div>
+                    <div flex>
+                        <p>{{serie.Title}} ({{serie.Year}})</p>
+                        <p>Plot: {{serie.Plot}}</p>
+                        <p>Got is a amazing TV Show. What is your favorite season?</p>
+
+                        <md-radio-group ng-model="data.group1" layout="row" flex>
+                            <md-radio-button flex ng-repeat="s in range(serie.totalSeasons) track by $index" value="{{$index + 1}}" ng-click="getSeason($index)">
+                                {{$index + 1}}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                </md-content>
+                <md-content class="md-padding">
+                    <md-list ng-if="season">
+                        <md-list-item class="md-hue-3">
+                            <div layout="row" flex="100" class="md-hue-3">
+                                <p flex><strong>Episode</strong></p>
+                                <p flex><strong>Title</strong></p>
+                                <p flex><strong>Released</strong></p>
+                                <p flex><strong>IMDB Rating</strong></p>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                        <md-list-item ng-repeat="e in season.Episodes">
+                            <div layout="row" flex="100">
+                                <p flex> {{ e.Episode }} </p>
+                                <p flex> {{ e.Title }} </p>
+                                <p flex> {{ e.Released }} </p>
+                                <p flex> {{ e.imdbRating }} </p>
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+
+                </md-content>
+            </md-tab>
+            <md-tab label="4">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab Four</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat
+                        neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas
+                        lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                </md-content>
+            </md-tab>
+            <md-tab label="5">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab Five</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat
+                        neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas
+                        lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </div>
+
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.js"></script>
+    <script src="/node_modules/angular-material/angular-material.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/main.services.js"></script>
+    <script src="js/main.controllers.js"></script>
+
+</body>
+
+</html>

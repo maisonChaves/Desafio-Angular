@@ -1,5 +1,14 @@
 var gulp = require('gulp');
+var browserSync = require('browser-sync').create();
+var reload      = browserSync.reload;
 
 gulp.task('default', function() {
-  // place code for your default task here
+  browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+
+    gulp.watch("index.html").on("change", reload);
+    gulp.watch("js/*.js").on("change", reload);
 });
