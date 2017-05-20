@@ -13,7 +13,8 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.11",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-image-resize": "^0.12.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
