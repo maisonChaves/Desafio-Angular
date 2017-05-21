@@ -14,24 +14,24 @@
             <md-tab label="1">
                 <md-content class="md-padding" flex>
                     <p layout="column" flex="100">First things first: tell us a litle bit about yourself.</p>
-                    <div layout="row" flex="100">
+                    <div layout="row" flex="100" layout-xs="column">
                         <md-input-container flex>
                             <label>Your favorite commic superhero</label>
-                            <input type="text" ng-model="color" required>
+                            <input type="text" ng-model="answer.superhero" required>
                         </md-input-container>
                         <md-input-container flex>
                             <label>TV serie you currently watching</label>
-                            <input type="text" ng-model="color" required>
+                            <input type="text" ng-model="answer.serie" required>
                         </md-input-container>
                     </div>
-                    <div layout="row" flex="100">
+                    <div layout="row" flex="100" layout-xs="column">
                         <md-input-container flex>
                             <label>Wich one you use: Bolacha or Biscoito</label>
-                            <input type="text" ng-model="color" required>
+                            <input type="text" ng-model="answer.cookies" required>
                         </md-input-container>
                         <md-input-container flex>
                             <label>What is the best quote ever</label>
-                            <input type="text" ng-model="color" required>
+                            <input type="text" ng-model="answer.quote" required>
                         </md-input-container>
                     </div>
                 </md-content>
@@ -45,7 +45,7 @@
                     <p flex layout="column">
                         Which one of these is your favorite Star Wars movie?
                     </p>
-                    <md-radio-group ng-model="selected" layout="row" layout-wrap flex>
+                    <md-radio-group ng-model="answer.starWars" layout="row" layout-wrap flex>
                         <div ng-repeat="m in movies" flex="20">
                             <md-card>
                                 <img ng-src="{{m.Poster}}" class="md-card-image" alt="{{m.Title}} ({{m.Year}})">
@@ -78,7 +78,7 @@
                         <p>Plot: {{serie.Plot}}</p>
                         <p>Got is a amazing TV Show. What is your favorite season?</p>
 
-                        <md-radio-group ng-model="data.group1" layout="row" flex>
+                        <md-radio-group ng-model="answer.got" layout="row" flex>
                             <md-radio-button flex ng-repeat="s in range(serie.totalSeasons) track by $index" value="{{$index + 1}}" ng-click="getSeason($index)">
                                 {{$index + 1}}
                             </md-radio-button>
@@ -117,12 +117,12 @@
                     <p flex layout="column">
                         We take too serious to choose restauant, everyday. What kind of food do you like?
                     </p>
-                    <md-radio-group ng-model="selected" layout="row" layout-wrap flex>
-                        <div flex="25">
+                    <md-radio-group ng-model="answer.food" layout="row" layout-xs="column" layout-wrap flex>
+                        <div flex="25" flex-xs="100">
                             <md-card>
                                 <img ng-src="img/salad.jpg" class="md-card-image" alt="salad">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="salad">
+                                    <md-radio-button value="Salad">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -133,11 +133,11 @@
                                 </md-card-title>
                             </md-card>
                         </div>
-                        <div flex="25">
+                        <div flex="25" flex-xs="100">
                             <md-card>
                                 <img ng-src="img/pasta.jpg" class="md-card-image" alt="pasta">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="pasta">
+                                    <md-radio-button value="Pasta">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -148,11 +148,11 @@
                                 </md-card-title>
                             </md-card>
                         </div>
-                        <div flex="25">
+                        <div flex="25" flex-xs="100">
                             <md-card>
                                 <img ng-src="img/steak.jpg" class="md-card-image" alt="steak">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="steak">
+                                    <md-radio-button value="Meat">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -163,11 +163,11 @@
                                 </md-card-title>
                             </md-card>
                         </div>
-                        <div flex="25">
+                        <div flex="25" flex-xs="100">
                             <md-card>
                                 <img ng-src="img/burritos.jpg" class="md-card-image" alt="burritos">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="burritos">
+                                    <md-radio-button value="Any food">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -189,38 +189,38 @@
                 <md-content class="md-padding">
                     <p>Review</p>
                     <md-content class="md-padding" flex>
-                        <div layout="row" flex="100">
+                        <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex>
                                 <label>Your favorite commic superhero</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.superhero" readonly>
                             </md-input-container>
                             <md-input-container flex>
                                 <label>TV serie you currently watching</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.serie" readonly>
                             </md-input-container>
                         </div>
-                        <div layout="row" flex="100">
+                        <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex>
                                 <label>Wich one you use: Bolacha or Biscoito</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.cookies" readonly>
                             </md-input-container>
                             <md-input-container flex>
                                 <label>What is the best quote ever</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.quote" readonly>
                             </md-input-container>
                         </div>
-                        <div layout="row" flex="100">
+                        <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex>
                                 <label>Your favorite Star Wars Movie</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.starWars" readonly>
                             </md-input-container>
                             <md-input-container flex>
                                 <label>Your favorite GOT Season</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.got" readonly>
                             </md-input-container>
                             <md-input-container flex>
                                 <label>Your kind of food</label>
-                                <input type="text" ng-model="color" required>
+                                <input type="text" ng-model="answer.food" readonly>
                             </md-input-container>
                         </div>
                     </md-content>
