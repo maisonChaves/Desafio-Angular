@@ -1,7 +1,8 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
-var resize = require('gulp-image-resize');
+var imageResize = require('gulp-image-resize');
+var sass = require('gulp-sass');
 
 gulp.task('default', function () {
     browserSync.init({
@@ -12,16 +13,26 @@ gulp.task('default', function () {
 
     gulp.watch("index.html").on("change", reload);
     gulp.watch("js/*.js").on("change", reload);
-
+    gulp.watch('sass/*.scss').on("change", reload);
 });
 
 gulp.task('img', function () {
     gulp.src('src/img/*.jpg')
-        .pipe(resize({
-            width: 1500,
-            height: 1125,
+        .pipe(imageResize({
+            width: 300,
+            height: 225,
             crop: true,
             upscale: false
         }))
         .pipe(gulp.dest('img'));
+});
+
+gulp.task('sass', function () {
+  return gulp.src('sass/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('css'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('sass/*.scss', ['sass']);
 });

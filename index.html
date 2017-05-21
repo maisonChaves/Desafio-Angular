@@ -10,7 +10,7 @@
 <body ng-app="challengeApp">
 
     <div ng-controller="MainController" ng-cloak layout-fill>
-        <md-tabs layout-fill>
+        <md-tabs layout-fill md-selected="tabIndex">
             <md-tab label="1">
                 <md-content class="md-padding" flex>
                     <p layout="column" flex="100">First things first: tell us a litle bit about yourself.</p>
@@ -35,6 +35,10 @@
                         </md-input-container>
                     </div>
                 </md-content>
+                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                </section>
             </md-tab>
             <md-tab label="2">
                 <md-content class="md-padding" layout="column">
@@ -59,6 +63,10 @@
                         </div>
                     </md-radio-group>
                 </md-content>
+                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                </section>
             </md-tab>
             <md-tab label="3">
                 <md-content class="md-padding" layout="row">
@@ -81,25 +89,28 @@
                     <md-list ng-if="season">
                         <md-list-item class="md-hue-3">
                             <div layout="row" flex="100" class="md-hue-3">
-                                <p flex><strong>Episode</strong></p>
+                                <p flex="10"><strong>Episode</strong></p>
                                 <p flex><strong>Title</strong></p>
-                                <p flex><strong>Released</strong></p>
-                                <p flex><strong>IMDB Rating</strong></p>
+                                <p flex="15"><strong>Released</strong></p>
+                                <p flex="15"><strong>IMDB Rating</strong></p>
                             </div>
                             <md-divider></md-divider>
                         </md-list-item>
                         <md-list-item ng-repeat="e in season.Episodes">
                             <div layout="row" flex="100">
-                                <p flex> {{ e.Episode }} </p>
+                                <p flex="10"> {{ e.Episode }} </p>
                                 <p flex> {{ e.Title }} </p>
-                                <p flex> {{ e.Released }} </p>
-                                <p flex> {{ e.imdbRating }} </p>
+                                <p flex="15"> {{ e.Released | date }} </p>
+                                <p flex="15"> {{ e.imdbRating }} </p>
                             </div>
                             <md-divider ng-if="!$last"></md-divider>
                         </md-list-item>
                     </md-list>
-
                 </md-content>
+                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                </section>
             </md-tab>
             <md-tab label="4">
                 <md-content class="md-padding">
@@ -169,12 +180,55 @@
                         </div>
                     </md-radio-group>
                 </md-content>
+                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                </section>
             </md-tab>
             <md-tab label="5">
                 <md-content class="md-padding">
                     <p>Review</p>
-                    
+                    <md-content class="md-padding" flex>
+                        <div layout="row" flex="100">
+                            <md-input-container flex>
+                                <label>Your favorite commic superhero</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>TV serie you currently watching</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" flex="100">
+                            <md-input-container flex>
+                                <label>Wich one you use: Bolacha or Biscoito</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>What is the best quote ever</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" flex="100">
+                            <md-input-container flex>
+                                <label>Your favorite Star Wars Movie</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Your favorite GOT Season</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Your kind of food</label>
+                                <input type="text" ng-model="color" required>
+                            </md-input-container>
+                        </div>
+                    </md-content>
                 </md-content>
+                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                </section>
             </md-tab>
         </md-tabs>
     </div>

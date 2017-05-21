@@ -4,8 +4,22 @@ app.controller('MainController', ['$scope', 'starWarsService', 'gotService', fun
     getMovies();
     getSerie();
 
-    $scope.range = function(n) {
-        return new Array(parseInt(n));
+    $scope.max = 4;
+
+    $scope.range = function (n) {
+        if (n) {
+            return new Array(parseInt(n));
+        }
+    };
+
+    $scope.back = function () {
+        var index = ($scope.tabIndex == 0) ? $scope.max : $scope.tabIndex - 1;
+        $scope.tabIndex = index;
+    };
+
+    $scope.next = function () {
+        var index = ($scope.tabIndex == $scope.max) ? 0 : $scope.tabIndex + 1;
+        $scope.tabIndex = index;
     };
 
     function getMovies() {
