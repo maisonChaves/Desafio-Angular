@@ -8,7 +8,8 @@ gulp.task('default', function () {
     browserSync.init({
         server: {
             baseDir: "./"
-        }
+        },
+        port: process.env.PORT || 5000
     });
 
     gulp.watch("index.html").on("change", reload);
