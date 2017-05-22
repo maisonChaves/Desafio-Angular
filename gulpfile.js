@@ -4,11 +4,22 @@ var reload = browserSync.reload;
 var imageResize = require('gulp-image-resize');
 var sass = require('gulp-sass');
 
+var jshint = require('gulp-jshint');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+
 gulp.task('default', ['server'], function () {
 
 });
 
 gulp.task('server', ['sass'], function () {
+
+    gulp.run('lint', 'dist');
+    gulp.watch(files, function (evt) {
+        gulp.run('lint', 'dist');
+    });
+
     browserSync.init({
         server: {
             baseDir: "./"
@@ -34,10 +45,30 @@ gulp.task('img', function () {
 
 gulp.task('sass', function () {
     return gulp.src('sass/*.scss')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
         .pipe(gulp.dest('css'));
 });
 
 gulp.task('sass:watch', function () {
     gulp.watch('sass/*.scss', ['sass']);
+});
+
+var files = ["js/main.js", "js/*.js"];
+
+gulp.task('lint', function () {
+
+    gulp.src(files)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
+gulp.task('dist', function () {
+
+    gulp.src(files)
+        .pipe(concat('./dist'))
+        .pipe(rename('main.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist'));
 });
