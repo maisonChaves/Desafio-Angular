@@ -5,46 +5,50 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
     <link rel="stylesheet" href="/node_modules/material-steppers/dist/material-steppers.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Desafio Angular</title>
 </head>
 
 <body ng-app="challengeApp" layout="row">
 
     <div ng-controller="MainController" flex="nogrow" style="width: 1024px; margin: 40px auto" ng-cloak>
-        <md-stepper md-selected="tabIndex" md-linear="false">
+
+        <md-stepper id="stepper" md-linear="true">
             <md-step label=" ">
                 <md-step-body>
-                    <p>First things first: tell us a litle bit about yourself.</p>
-                    <div layout="row" layout-xs="column">
+                    <p flex>First things first: tell us a litle bit about yourself.</p>
+                    <form name="formBasics">
+                        <div layout="row" layout-xs="column">
 
-                        <md-input-container flex="50">
-                            <label>Your favorite commic superhero</label>
-                            <input type="text" ng-model="answer.superhero" required>
-                        </md-input-container>
+                            <md-input-container flex="50">
+                                <label>Your favorite commic superhero</label>
+                                <input type="text" ng-model="answer.superhero" required>
+                            </md-input-container>
 
-                        <md-input-container flex="50">
-                            <label>TV serie you currently watching</label>
-                            <input type="text" ng-model="answer.serie" required>
-                        </md-input-container>
+                            <md-input-container flex="45">
+                                <label>TV serie you currently watching</label>
+                                <input type="text" ng-model="answer.serie" required>
+                            </md-input-container>
 
-                    </div>
-                    <div layout="row" layout-xs="column">
+                        </div>
+                        <div layout="row" layout-xs="column">
 
                             <md-input-container flex="50">
                                 <label>Wich one you use: Bolacha or Biscoito</label>
                                 <input type="text" ng-model="answer.cookies" required>
                             </md-input-container>
-                     
-                            <md-input-container flex="50">
+
+                            <md-input-container flex="45">
                                 <label>What is the best quote ever</label>
                                 <input type="text" ng-model="answer.quote" required>
                             </md-input-container>
 
-                    </div>
+                        </div>
+                    </form>
                 </md-step-body>
-                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="formBasics.$invalid">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
@@ -70,7 +74,7 @@
                         </div>
                     </md-radio-group>
                 </md-content>
-                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
@@ -114,7 +118,7 @@
                         </md-list-item>
                     </md-list>
                 </md-content>
-                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
@@ -126,7 +130,7 @@
                     </p>
                     <md-radio-group ng-model="answer.food" layout="row" layout-xs="column" layout-wrap flex>
                         <div flex="25" flex-xs="100">
-                            <md-card>
+                            <md-card ng-click="answer.food = 'Salad'">
                                 <img ng-src="img/salad.jpg" class="md-card-image" alt="salad">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Salad">
@@ -141,7 +145,7 @@
                             </md-card>
                         </div>
                         <div flex="25" flex-xs="100">
-                            <md-card>
+                            <md-card ng-click="answer.food = 'Pasta'">
                                 <img ng-src="img/pasta.jpg" class="md-card-image" alt="pasta">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Pasta">
@@ -156,7 +160,7 @@
                             </md-card>
                         </div>
                         <div flex="25" flex-xs="100">
-                            <md-card>
+                            <md-card ng-click="answer.food = 'Meat'">
                                 <img ng-src="img/steak.jpg" class="md-card-image" alt="steak">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Meat">
@@ -171,7 +175,7 @@
                             </md-card>
                         </div>
                         <div flex="25" flex-xs="100">
-                            <md-card>
+                            <md-card ng-click="answer.food = 'Any food'">
                                 <img ng-src="img/burritos.jpg" class="md-card-image" alt="burritos">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Any food">
@@ -187,9 +191,9 @@
                         </div>
                     </md-radio-group>
                 </md-content>
-                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.food">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
@@ -232,9 +236,9 @@
                         </div>
                     </md-content>
                 </md-content>
-                <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+                    <md-button class="md-raised md-primary">Save</md-button>
                 </section>
             </md-step>
         </md-stepper>

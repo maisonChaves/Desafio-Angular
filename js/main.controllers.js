@@ -1,10 +1,10 @@
 "use strict";
 
-app.controller('MainController', ['$scope', 'starWarsService', 'gotService', function ($scope, starWarsService, gotService) {
+app.controller('MainController', ['$scope', 'starWarsService', 'gotService', '$mdStepper', function ($scope, starWarsService, gotService, $mdStepper) {
     getMovies();
     getSerie();
 
-    $scope.max = 4;
+    $scope.answer = {};
 
     $scope.range = function (n) {
         if (n) {
@@ -13,13 +13,13 @@ app.controller('MainController', ['$scope', 'starWarsService', 'gotService', fun
     };
 
     $scope.back = function () {
-        var index = ($scope.tabIndex == 0) ? $scope.max : $scope.tabIndex - 1;
-        $scope.tabIndex = index;
+        var steppers = $mdStepper('stepper');
+        steppers.back();
     };
 
     $scope.next = function () {
-        var index = ($scope.tabIndex == $scope.max) ? 0 : $scope.tabIndex + 1;
-        $scope.tabIndex = index;
+        var steppers = $mdStepper('stepper');
+        steppers.next();
     };
 
     function getMovies() {
