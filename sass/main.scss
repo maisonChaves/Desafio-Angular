@@ -1,6 +1,11 @@
 $primary-color: rgb(57,73,171);
+$backgroud-color: #fafafa;
 
 .md-stepper-indicator.md-completed .md-stepper-number,
 .md-stepper-indicator.md-active .md-stepper-number {
     background-color: $primary-color;
+}
+
+.md-stepper-indicator-wrapper{
+    background-color: $backgroud-color;
 }
