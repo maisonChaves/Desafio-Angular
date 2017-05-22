@@ -1,6 +1,6 @@
-$primary-color: rgb(57,73,171);
+$primary-color: rgb(57, 73, 171);
 $backgroud-color: #fafafa;
-
+$interface-sm: 1000px;
 .md-stepper-indicator.md-completed .md-stepper-number,
 .md-stepper-indicator.md-active .md-stepper-number {
     background-color: $primary-color;
@@ -8,4 +8,17 @@ $backgroud-color: #fafafa;
 
 .md-stepper-indicator-wrapper {
     background-color: $backgroud-color;
+}
+
+@media screen and (min-width: $interface-sm) {
+    .boxed {
+        width: 1024px;
+        margin: 40px auto
+    }
+}
+
+@media screen and (max-width: $interface-sm) {
+    .boxed {
+        width: 100%;
+    }
 }

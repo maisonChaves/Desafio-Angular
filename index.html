@@ -11,21 +11,21 @@
 
 <body ng-app="challengeApp" layout="row">
 
-    <div ng-controller="MainController" flex="nogrow" style="width: 1024px; margin: 40px auto" ng-cloak>
+    <div ng-controller="MainController" flex="nogrow" class="boxed" ng-cloak>
 
-        <md-stepper id="stepper" md-linear="true">
+        <md-stepper id="stepper" md-linear="true" md-mobile-step-text="true">
             <md-step label=" ">
                 <md-step-body>
                     <p flex>First things first: tell us a litle bit about yourself.</p>
                     <form name="formBasics">
                         <div layout="row" layout-xs="column">
 
-                            <md-input-container flex="50">
+                            <md-input-container flex="50" flex-xs="100">
                                 <label>Your favorite commic superhero</label>
                                 <input type="text" ng-model="answer.superhero" required>
                             </md-input-container>
 
-                            <md-input-container flex="45">
+                            <md-input-container flex="45" flex-xs="100">
                                 <label>TV serie you currently watching</label>
                                 <input type="text" ng-model="answer.serie" required>
                             </md-input-container>
@@ -33,12 +33,12 @@
                         </div>
                         <div layout="row" layout-xs="column">
 
-                            <md-input-container flex="50">
+                            <md-input-container flex="50" flex-xs="100">
                                 <label>Wich one you use: Bolacha or Biscoito</label>
                                 <input type="text" ng-model="answer.cookies" required>
                             </md-input-container>
 
-                            <md-input-container flex="45">
+                            <md-input-container flex="45" flex-xs="100">
                                 <label>What is the best quote ever</label>
                                 <input type="text" ng-model="answer.quote" required>
                             </md-input-container>
@@ -197,45 +197,45 @@
                 </section>
             </md-step>
             <md-step label=" ">
-                <md-content>
+                <md-step-body>
                     <p>Review</p>
-                    <md-content flex>
+                    <md-content>
                         <div layout="row" layout-xs="column" flex="100">
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>Your favorite commic superhero</label>
                                 <input type="text" ng-model="answer.superhero" readonly>
                             </md-input-container>
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>TV serie you currently watching</label>
                                 <input type="text" ng-model="answer.serie" readonly>
                             </md-input-container>
                         </div>
                         <div layout="row" layout-xs="column" flex="100">
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>Wich one you use: Bolacha or Biscoito</label>
                                 <input type="text" ng-model="answer.cookies" readonly>
                             </md-input-container>
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>What is the best quote ever</label>
                                 <input type="text" ng-model="answer.quote" readonly>
                             </md-input-container>
                         </div>
                         <div layout="row" layout-xs="column" flex="100">
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>Your favorite Star Wars Movie</label>
                                 <input type="text" ng-model="answer.starWars" readonly>
                             </md-input-container>
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>Your favorite GOT Season</label>
                                 <input type="text" ng-model="answer.got" readonly>
                             </md-input-container>
-                            <md-input-container flex>
+                            <md-input-container flex flex-xs="100">
                                 <label>Your kind of food</label>
                                 <input type="text" ng-model="answer.food" readonly>
                             </md-input-container>
                         </div>
                     </md-content>
-                </md-content>
+                </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary">Save</md-button>
