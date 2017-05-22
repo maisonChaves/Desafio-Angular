@@ -2,7 +2,7 @@
 
     "use strict";
 
-    app.controller('MainController', ['$scope', 'starWarsService', 'gotService', '$mdStepper', function ($scope, starWarsService, gotService, $mdStepper) {
+    app.controller('MainController', ['$scope', '$filter', 'starWarsService', 'gotService', '$mdStepper', function ($scope, $filter, starWarsService, gotService, $mdStepper) {
         getMovies();
         getSerie();
 
@@ -28,6 +28,8 @@
             starWarsService.getMovies()
                 .then(function (response) {
                     $scope.movies = response.data.Search;
+                    $scope.movies = $filter('filterTitle')($scope.movies, 'Robot Chicken');
+                    $scope.movies = $filter('filterType')($scope.movies, 'game');
                 }, function (error) {
                     $scope.status = 'Unable to load movies data: ' + error.message;
                 });
