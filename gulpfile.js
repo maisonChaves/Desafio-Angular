@@ -4,7 +4,11 @@ var reload = browserSync.reload;
 var imageResize = require('gulp-image-resize');
 var sass = require('gulp-sass');
 
-gulp.task('default', function () {
+gulp.task('default', ['server'], function () {
+
+});
+
+gulp.task('server', function () {
     browserSync.init({
         server: {
             baseDir: "./"
@@ -12,7 +16,7 @@ gulp.task('default', function () {
         port: process.env.PORT || 5000
     });
 
-    gulp.watch("index.html").on("change", reload);
+    gulp.watch("*.html").on("change", reload);
     gulp.watch("js/*.js").on("change", reload);
     gulp.watch('sass/*.scss').on("change", reload);
 });
@@ -29,11 +33,11 @@ gulp.task('img', function () {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('sass/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('css'));
+    return gulp.src('sass/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('css'));
 });
- 
+
 gulp.task('sass:watch', function () {
-  gulp.watch('sass/*.scss', ['sass']);
+    gulp.watch('sass/*.scss', ['sass']);
 });

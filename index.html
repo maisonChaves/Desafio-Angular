@@ -4,44 +4,51 @@
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" href="/node_modules/material-steppers/dist/material-steppers.min.css">
     <title>Desafio Angular</title>
 </head>
 
-<body ng-app="challengeApp">
+<body ng-app="challengeApp" layout="row">
 
-    <div ng-controller="MainController" ng-cloak layout-fill>
-        <md-tabs layout-fill md-selected="tabIndex">
-            <md-tab label="1">
-                <md-content class="md-padding" flex>
-                    <p layout="column" flex="100">First things first: tell us a litle bit about yourself.</p>
-                    <div layout="row" flex="100" layout-xs="column">
-                        <md-input-container flex>
+    <div ng-controller="MainController" flex="nogrow" style="width: 1024px; margin: 40px auto" ng-cloak>
+        <md-stepper md-selected="tabIndex" md-linear="false">
+            <md-step label=" ">
+                <md-step-body>
+                    <p>First things first: tell us a litle bit about yourself.</p>
+                    <div layout="row" layout-xs="column">
+
+                        <md-input-container flex="50">
                             <label>Your favorite commic superhero</label>
                             <input type="text" ng-model="answer.superhero" required>
                         </md-input-container>
-                        <md-input-container flex>
+
+                        <md-input-container flex="50">
                             <label>TV serie you currently watching</label>
                             <input type="text" ng-model="answer.serie" required>
                         </md-input-container>
+
                     </div>
-                    <div layout="row" flex="100" layout-xs="column">
-                        <md-input-container flex>
-                            <label>Wich one you use: Bolacha or Biscoito</label>
-                            <input type="text" ng-model="answer.cookies" required>
-                        </md-input-container>
-                        <md-input-container flex>
-                            <label>What is the best quote ever</label>
-                            <input type="text" ng-model="answer.quote" required>
-                        </md-input-container>
+                    <div layout="row" layout-xs="column">
+
+                            <md-input-container flex="50">
+                                <label>Wich one you use: Bolacha or Biscoito</label>
+                                <input type="text" ng-model="answer.cookies" required>
+                            </md-input-container>
+                     
+                            <md-input-container flex="50">
+                                <label>What is the best quote ever</label>
+                                <input type="text" ng-model="answer.quote" required>
+                            </md-input-container>
+
                     </div>
-                </md-content>
+                </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="space-around center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
-            </md-tab>
-            <md-tab label="2">
-                <md-content class="md-padding" layout="column">
+            </md-step>
+            <md-step label=" ">
+                <md-content layout="column">
                     <p flex layout="column">
                         Which one of these is your favorite Star Wars movie?
                     </p>
@@ -67,9 +74,9 @@
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
-            </md-tab>
-            <md-tab label="3">
-                <md-content class="md-padding" layout="row">
+            </md-step>
+            <md-step label=" ">
+                <md-content layout="row">
                     <div flex="33" layout-align="center center">
                         <img ng-src="{{serie.Poster}}" alt="{{serie.Title}} ({{serie.Year}})">
                     </div>
@@ -85,7 +92,7 @@
                         </md-radio-group>
                     </div>
                 </md-content>
-                <md-content class="md-padding">
+                <md-content>
                     <md-list ng-if="season">
                         <md-list-item class="md-hue-3">
                             <div layout="row" flex="100" class="md-hue-3">
@@ -111,9 +118,9 @@
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
-            </md-tab>
-            <md-tab label="4">
-                <md-content class="md-padding">
+            </md-step>
+            <md-step label=" ">
+                <md-content>
                     <p flex layout="column">
                         We take too serious to choose restauant, everyday. What kind of food do you like?
                     </p>
@@ -184,11 +191,11 @@
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
-            </md-tab>
-            <md-tab label="5">
-                <md-content class="md-padding">
+            </md-step>
+            <md-step label=" ">
+                <md-content>
                     <p>Review</p>
-                    <md-content class="md-padding" flex>
+                    <md-content flex>
                         <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex>
                                 <label>Your favorite commic superhero</label>
@@ -229,14 +236,15 @@
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
                     <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
                 </section>
-            </md-tab>
-        </md-tabs>
+            </md-step>
+        </md-stepper>
     </div>
 
     <script src="/node_modules/angular/angular.js"></script>
     <script src="/node_modules/angular-aria/angular-aria.js"></script>
     <script src="/node_modules/angular-animate/angular-animate.js"></script>
     <script src="/node_modules/angular-material/angular-material.js"></script>
+    <script src="/node_modules/material-steppers/dist/material-steppers.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/main.services.js"></script>
     <script src="js/main.controllers.js"></script>

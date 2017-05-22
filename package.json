@@ -9,16 +9,22 @@
     "angular-animate": "^1.6.4",
     "angular-aria": "^1.6.4",
     "angular-material": "^1.1.4",
-    "gulp": "^3.9.1",
     "browser-sync": "^2.18.11",
+    "gulp": "^3.9.1",
     "gulp-image-resize": "^0.12.0",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "material-steppers": "^2.0.0",
+    "md-steppers": "^0.3.4"
   },
   "devDependencies": {
     "browser-sync": "^2.18.11",
     "gulp": "^3.9.1",
     "gulp-image-resize": "^0.12.0",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "wdio-mocha-framework": "^0.5.10",
+    "wdio-phantomjs-service": "^0.2.2",
+    "wdio-selenium-standalone-service": "0.0.8",
+    "wdio-spec-reporter": "^0.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
