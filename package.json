@@ -20,6 +20,7 @@
     "browser-sync": "^2.18.11",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "chai-webdriverio": "^0.3.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-image-resize": "^0.12.0",

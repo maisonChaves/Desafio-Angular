@@ -16,7 +16,7 @@
         <md-stepper id="stepper" md-linear="true" md-mobile-step-text="true">
             <md-step label=" ">
                 <md-step-body>
-                    <p flex>First things first: tell us a litle bit about yourself.</p>
+                    <p flex layout-padding>First things first: tell us a litle bit about yourself.</p>
                     <form name="formBasics">
                         <div layout="row" layout-xs="column">
 
@@ -53,11 +53,11 @@
             </md-step>
             <md-step label=" ">
                 <md-content layout="column">
-                    <p flex layout="column">
+                    <p flex layout="column" layout-padding>
                         Which one of these is your favorite Star Wars movie?
                     </p>
                     <md-radio-group ng-model="answer.starWars" layout="row" layout-wrap flex>
-                        <div ng-repeat="m in movies" flex="33" flex-xs="100">
+                        <div ng-repeat="m in movies" flex="33" flex-xs="100" >
                             <md-card ng-click="answer.starWars = m.Title" id="movie-{{$index}}">
                                 <img ng-src="{{m.Poster}}" class="md-card-image" alt="{{m.Title}} ({{m.Year}})">
                                 <md-card-actions layout="row" layout-align="center center">
@@ -82,16 +82,16 @@
             <md-step label=" ">
                 <md-step-body>
                     <md-content layout="row" layout-xs="column">
-                        <div flex="20" flex-xs="100" layout-align="center center">
+                        <div flex="20" flex-xs="100" layout-align="center center" layout-margin>
                             <img ng-src="{{serie.Poster}}" alt="{{serie.Title}} ({{serie.Year}})" flex>
                         </div>
-                        <div flex="80" flex-xs="100" layout-align="center center">
-                            <p>{{serie.Title}} ({{serie.Year}})</p>
+                        <div flex="80" flex-xs="100" layout-align="center center" layout-padding>
+                            <p id="serie-title">{{serie.Title}} ({{serie.Year}})</p>
                             <p>Plot: {{serie.Plot}}</p>
                             <p>Got is a amazing TV Show. What is your favorite season?</p>
 
                             <md-radio-group ng-model="answer.got" layout="row" layout-wrap>
-                                <md-radio-button flex flex-xs="25" class="md-primary" value="Season {{$index + 1}}" ng-click="getSeason($index)" ng-repeat="s in range(serie.totalSeasons) track by $index">
+                                <md-radio-button id="season-{{$index}}" flex flex-xs="25" class="md-primary season-radio" value="Season {{$index + 1}}" ng-click="getSeason($index)" ng-repeat="s in range(serie.totalSeasons) track by $index">
                                     {{$index + 1}}
                                 </md-radio-button>
                             </md-radio-group>
@@ -122,12 +122,12 @@
                 </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.got">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.got" id="next-3">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
                 <md-content>
-                    <p flex layout="column">
+                    <p flex layout="column" layout-padding>
                         We take too serious to choose restauant, everyday. What kind of food do you like?
                     </p>
                     <md-radio-group ng-model="answer.food" layout="row" layout-xs="column" layout-wrap flex>
@@ -135,7 +135,7 @@
                             <md-card ng-click="answer.food = 'Salad'">
                                 <img ng-src="img/salad.jpg" class="md-card-image" alt="salad">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="Salad" class="md-primary">
+                                    <md-radio-button value="Salad" class="md-primary" id="food-salad">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -150,7 +150,7 @@
                             <md-card ng-click="answer.food = 'Pasta'">
                                 <img ng-src="img/pasta.jpg" class="md-card-image" alt="pasta">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="Pasta" class="md-primary">
+                                    <md-radio-button value="Pasta" class="md-primary" id="food-pasta">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -165,7 +165,7 @@
                             <md-card ng-click="answer.food = 'Meat'">
                                 <img ng-src="img/steak.jpg" class="md-card-image" alt="steak">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="Meat" class="md-primary">
+                                    <md-radio-button value="Meat" class="md-primary" id="food-meat">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -180,7 +180,7 @@
                             <md-card ng-click="answer.food = 'Any food'">
                                 <img ng-src="img/burritos.jpg" class="md-card-image" alt="burritos">
                                 <md-card-actions layout="row" layout-align="center center">
-                                    <md-radio-button value="Any food" class="md-primary">
+                                    <md-radio-button value="Any food" class="md-primary" id="food-any">
 
                                     </md-radio-button>
                                 </md-card-actions>
@@ -195,12 +195,12 @@
                 </md-content>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.food">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.food" id="next-4">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
                 <md-step-body>
-                    <p>Review</p>
+                    <p layout-padding>Review</p>
                     <md-content>
                         <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex flex-xs="100">
