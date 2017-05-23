@@ -10,7 +10,6 @@
             }
 
             return collection.filter(function (item) {
-                console.log(item);
                 return item.Title.indexOf(fragment) == -1;
             });
         };
@@ -24,7 +23,6 @@
             }
 
             return collection.filter(function (item) {
-                console.log(item);
                 return item.Type.indexOf(fragment) == -1;
             });
         };

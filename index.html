@@ -48,7 +48,7 @@
                 </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="formBasics.$invalid">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()" id="next-1" ng-disabled="formBasics.$invalid">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
@@ -58,7 +58,7 @@
                     </p>
                     <md-radio-group ng-model="answer.starWars" layout="row" layout-wrap flex>
                         <div ng-repeat="m in movies" flex="33" flex-xs="100">
-                            <md-card ng-click="answer.starWars = m.Title">
+                            <md-card ng-click="answer.starWars = m.Title" id="movie-{{$index}}">
                                 <img ng-src="{{m.Poster}}" class="md-card-image" alt="{{m.Title}} ({{m.Year}})">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="{{m.Title}}" class="md-primary">
@@ -76,16 +76,16 @@
                 </md-content>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.starWars">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.starWars" id="next-2">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
                 <md-step-body>
                     <md-content layout="row" layout-xs="column">
                         <div flex="20" flex-xs="100" layout-align="center center">
-                            <img ng-src="{{serie.Poster}}" class="md-card-image" alt="{{serie.Title}} ({{serie.Year}})">
+                            <img ng-src="{{serie.Poster}}" alt="{{serie.Title}} ({{serie.Year}})" flex>
                         </div>
-                        <div flex="80" flex-xs="100">
+                        <div flex="80" flex-xs="100" layout-align="center center">
                             <p>{{serie.Title}} ({{serie.Year}})</p>
                             <p>Plot: {{serie.Plot}}</p>
                             <p>Got is a amazing TV Show. What is your favorite season?</p>
