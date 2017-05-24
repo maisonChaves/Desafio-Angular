@@ -9,6 +9,8 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 
+var gnf = require('gulp-npm-files');
+
 var webdriver = require('gulp-webdriver');
 
 gulp.task('default', ['server'], function () {
@@ -22,42 +24,52 @@ gulp.task('server', ['sass'], function () {
         gulp.run('lint', 'dist');
     });
 
+    gulp.src('src/*.html')
+        .pipe(gulp.dest('dist'));
+
+    gulp.src('src/img/*.jpg')
+        .pipe(gulp.dest('dist/img'));
+
+    gulp.src(gnf(), {
+        base: './'
+    }).pipe(gulp.dest('./dist'));
+
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "./dist"
         },
         port: process.env.PORT || 5000
     });
 
-    gulp.watch("*.html").on("change", reload);
-    gulp.watch("js/*.js").on("change", reload);
-    gulp.watch('sass/*.scss', ['sass']).on("change", reload);
+    gulp.watch("src/*.html").on("change", reload);
+    gulp.watch("src/js/*.js").on("change", reload);
+    gulp.watch('src/sass/*.scss', ['sass']).on("change", reload);
 });
 
 gulp.task('img', function () {
-    gulp.src('src/img/*.jpg')
+    gulp.src('src/img/uncompressed/*.jpg')
         .pipe(imageResize({
             width: 300,
             height: 225,
             crop: true,
             upscale: false
         }))
-        .pipe(gulp.dest('img'));
+        .pipe(gulp.dest('src/img'));
 });
 
 gulp.task('sass', function () {
-    return gulp.src('sass/*.scss')
+    return gulp.src('src/sass/*.scss')
         .pipe(sass({
             outputStyle: 'compressed'
         }).on('error', sass.logError))
-        .pipe(gulp.dest('css'));
+        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch('sass/*.scss', ['sass']);
+    gulp.watch('src/sass/*.scss', ['sass']);
 });
 
-var files = ["js/main.js", "js/*.js"];
+var files = ["src/js/main.js", "src/js/*.js"];
 
 gulp.task('lint', function () {
 
@@ -69,10 +81,10 @@ gulp.task('lint', function () {
 gulp.task('dist', function () {
 
     gulp.src(files)
-        .pipe(concat('./dist'))
+        .pipe(concat('dist/js'))
         .pipe(rename('main.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('server:test', function (done) {
@@ -81,7 +93,7 @@ gulp.task('server:test', function (done) {
         notify: false,
         open: false,
         server: {
-            baseDir: "./"
+            baseDir: "./dist"
         },
         port: process.env.PORT || 5000,
         ui: false
