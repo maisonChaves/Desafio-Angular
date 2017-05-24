@@ -11,7 +11,7 @@
 
 <body ng-app="challengeApp" layout="row">
 
-    <div ng-controller="MainController" flex="nogrow" class="boxed" ng-cloak>
+    <div ng-controller="MainController as main" flex="nogrow" class="boxed" ng-cloak>
 
         <md-stepper id="stepper" md-linear="true" md-mobile-step-text="true">
             <md-step label=" ">
@@ -22,12 +22,12 @@
 
                             <md-input-container flex="50" flex-xs="100">
                                 <label>Your favorite commic superhero</label>
-                                <input type="text" ng-model="answer.superhero" required id="superhero">
+                                <input type="text" ng-model="main.answer.superhero" required id="superhero">
                             </md-input-container>
 
                             <md-input-container flex="45" flex-xs="100">
                                 <label>TV serie you currently watching</label>
-                                <input type="text" ng-model="answer.serie" required id="serie">
+                                <input type="text" ng-model="main.answer.serie" required id="serie">
                             </md-input-container>
 
                         </div>
@@ -35,20 +35,20 @@
 
                             <md-input-container flex="50" flex-xs="100">
                                 <label>Wich one you use: Bolacha or Biscoito</label>
-                                <input type="text" ng-model="answer.cookies" required id="cookies">
+                                <input type="text" ng-model="main.answer.cookies" required id="cookies">
                             </md-input-container>
 
                             <md-input-container flex="45" flex-xs="100">
                                 <label>What is the best quote ever</label>
-                                <input type="text" ng-model="answer.quote" required id="quote">
+                                <input type="text" ng-model="main.answer.quote" required id="quote">
                             </md-input-container>
 
                         </div>
                     </form>
                 </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" id="next-1" ng-disabled="formBasics.$invalid">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.next()" id="next-1" ng-disabled="formBasics.$invalid">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
@@ -56,9 +56,9 @@
                     <p flex layout="column" layout-padding>
                         Which one of these is your favorite Star Wars movie?
                     </p>
-                    <md-radio-group ng-model="answer.starWars" layout="row" layout-wrap flex>
-                        <div ng-repeat="m in movies" flex="33" flex-xs="100" >
-                            <md-card ng-click="answer.starWars = m.Title" id="movie-{{$index}}">
+                    <md-radio-group ng-model="main.answer.starWars" layout="row" layout-wrap flex>
+                        <div ng-repeat="m in main.movies" flex="33" flex-xs="100" >
+                            <md-card ng-click="main.answer.starWars = m.Title" id="movie-{{$index}}">
                                 <img ng-src="{{m.Poster}}" class="md-card-image" alt="{{m.Title}} ({{m.Year}})">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="{{m.Title}}" class="md-primary">
@@ -75,23 +75,23 @@
                     </md-radio-group>
                 </md-content>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.starWars" id="next-2">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.next()" ng-disabled="!main.answer.starWars" id="next-2">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
                 <md-step-body>
                     <md-content layout="row" layout-xs="column">
                         <div flex="20" flex-xs="100" layout-align="center center" layout-margin>
-                            <img ng-src="{{serie.Poster}}" alt="{{serie.Title}} ({{serie.Year}})" flex>
+                            <img ng-src="{{main.serie.Poster}}" alt="{{main.serie.Title}} ({{main.serie.Year}})" flex>
                         </div>
                         <div flex="80" flex-xs="100" layout-align="center center" layout-padding>
-                            <p id="serie-title">{{serie.Title}} ({{serie.Year}})</p>
-                            <p>Plot: {{serie.Plot}}</p>
+                            <p id="serie-title">{{main.serie.Title}} ({{main.serie.Year}})</p>
+                            <p>Plot: {{main.serie.Plot}}</p>
                             <p>Got is a amazing TV Show. What is your favorite season?</p>
 
-                            <md-radio-group ng-model="answer.got" layout="row" layout-wrap>
-                                <md-radio-button id="season-{{$index}}" flex flex-xs="25" class="md-primary season-radio" value="Season {{$index + 1}}" ng-click="getSeason($index)" ng-repeat="s in range(serie.totalSeasons) track by $index">
+                            <md-radio-group ng-model="main.answer.got" layout="row" layout-wrap>
+                                <md-radio-button id="season-{{$index}}" flex flex-xs="25" class="md-primary season-radio" value="Season {{$index + 1}}" ng-click="main.getSeason($index)" ng-repeat="s in main.range(main.serie.totalSeasons) track by $index">
                                     {{$index + 1}}
                                 </md-radio-button>
                             </md-radio-group>
@@ -108,7 +108,7 @@
                                 </div>
                                 <md-divider></md-divider>
                             </md-list-item>
-                            <md-list-item ng-repeat="e in season.Episodes">
+                            <md-list-item ng-repeat="e in main.season.Episodes">
                                 <div class="md-list-item-text" layout="row" flex="100" layout-wrap>
                                     <p flex="10" flex-xs="20"> {{ e.Episode }} </p>
                                     <h3 flex="60" flex-xs="80"> {{ e.Title }} </h3>
@@ -121,8 +121,8 @@
                     </md-content>
                 </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.got" id="next-3">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.next()" ng-disabled="!main.answer.got" id="next-3">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
@@ -130,9 +130,9 @@
                     <p flex layout="column" layout-padding>
                         We take too serious to choose restauant, everyday. What kind of food do you like?
                     </p>
-                    <md-radio-group ng-model="answer.food" layout="row" layout-xs="column" layout-wrap flex>
+                    <md-radio-group ng-model="main.answer.food" layout="row" layout-xs="column" layout-wrap flex>
                         <div flex="25" flex-xs="100">
-                            <md-card ng-click="answer.food = 'Salad'">
+                            <md-card ng-click="main.answer.food = 'Salad'">
                                 <img ng-src="img/salad.jpg" class="md-card-image" alt="salad">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Salad" class="md-primary" id="food-salad">
@@ -147,7 +147,7 @@
                             </md-card>
                         </div>
                         <div flex="25" flex-xs="100">
-                            <md-card ng-click="answer.food = 'Pasta'">
+                            <md-card ng-click="main.answer.food = 'Pasta'">
                                 <img ng-src="img/pasta.jpg" class="md-card-image" alt="pasta">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Pasta" class="md-primary" id="food-pasta">
@@ -162,7 +162,7 @@
                             </md-card>
                         </div>
                         <div flex="25" flex-xs="100">
-                            <md-card ng-click="answer.food = 'Meat'">
+                            <md-card ng-click="main.answer.food = 'Meat'">
                                 <img ng-src="img/steak.jpg" class="md-card-image" alt="steak">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Meat" class="md-primary" id="food-meat">
@@ -177,7 +177,7 @@
                             </md-card>
                         </div>
                         <div flex="25" flex-xs="100">
-                            <md-card ng-click="answer.food = 'Any food'">
+                            <md-card ng-click="main.answer.food = 'Any food'">
                                 <img ng-src="img/burritos.jpg" class="md-card-image" alt="burritos">
                                 <md-card-actions layout="row" layout-align="center center">
                                     <md-radio-button value="Any food" class="md-primary" id="food-any">
@@ -194,8 +194,8 @@
                     </md-radio-group>
                 </md-content>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-                    <md-button class="md-raised md-primary" ng-click="next()" ng-disabled="!answer.food" id="next-4">Next</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.next()" ng-disabled="!main.answer.food" id="next-4">Next</md-button>
                 </section>
             </md-step>
             <md-step label=" ">
@@ -205,41 +205,41 @@
                         <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex flex-xs="100">
                                 <label>Your favorite commic superhero</label>
-                                <input type="text" ng-model="answer.superhero" readonly>
+                                <input type="text" ng-model="main.answer.superhero" readonly>
                             </md-input-container>
                             <md-input-container flex flex-xs="100">
                                 <label>TV serie you currently watching</label>
-                                <input type="text" ng-model="answer.serie" readonly>
+                                <input type="text" ng-model="main.answer.serie" readonly>
                             </md-input-container>
                         </div>
                         <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex flex-xs="100">
                                 <label>Wich one you use: Bolacha or Biscoito</label>
-                                <input type="text" ng-model="answer.cookies" readonly>
+                                <input type="text" ng-model="main.answer.cookies" readonly>
                             </md-input-container>
                             <md-input-container flex flex-xs="100">
                                 <label>What is the best quote ever</label>
-                                <input type="text" ng-model="answer.quote" readonly>
+                                <input type="text" ng-model="main.answer.quote" readonly>
                             </md-input-container>
                         </div>
                         <div layout="row" layout-xs="column" flex="100">
                             <md-input-container flex flex-xs="100">
                                 <label>Your favorite Star Wars Movie</label>
-                                <input type="text" ng-model="answer.starWars" readonly>
+                                <input type="text" ng-model="main.answer.starWars" readonly>
                             </md-input-container>
                             <md-input-container flex flex-xs="100">
                                 <label>Your favorite GOT Season</label>
-                                <input type="text" ng-model="answer.got" readonly>
+                                <input type="text" ng-model="main.answer.got" readonly>
                             </md-input-container>
                             <md-input-container flex flex-xs="100">
                                 <label>Your kind of food</label>
-                                <input type="text" ng-model="answer.food" readonly>
+                                <input type="text" ng-model="main.answer.food" readonly>
                             </md-input-container>
                         </div>
                     </md-content>
                 </md-step-body>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-click="main.back()">Back</md-button>
                     <md-button class="md-raised md-primary">Save</md-button>
                 </section>
             </md-step>

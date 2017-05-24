@@ -1,5 +1,9 @@
+/**
+ * @namespace ChallengeApp
+ * @desc ChallengeApp module
+ */
 (function () {
     'use strict';
 
-    window.app = angular.module('challengeApp', ['ngMaterial', 'mdSteppers']);
+    angular.module('challengeApp', ['ngMaterial', 'mdSteppers']);
 }());
